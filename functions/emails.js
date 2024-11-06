@@ -23,7 +23,7 @@ const db = admin.firestore();
 
 exports.handler = async (event, context) => {
   const headers = {
-    'Access-Control-Allow-Origin': 'oma.metropolia.fi',
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
@@ -58,6 +58,7 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
+      headers,
       body: JSON.stringify({ message: 'Email added successfully' }),
     };
   } catch (error) {
