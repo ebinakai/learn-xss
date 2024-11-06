@@ -1,0 +1,13 @@
+{
+    "name": "netlify-functions-local",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+      "start": "netlify dev"
+    },
+    "dependencies": {
+      "firebase-admin": "^12.7.0",
+      "netlify-cli": "^17.37.2"
+    }
+  }
+  
