@@ -1,5 +1,5 @@
 {
-    "name": "netlify-functions-local",
+    "name": "netlify-functions",
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
