@@ -22,10 +22,24 @@ if (!admin.apps.length) {
 const db = admin.firestore();
 
 exports.handler = async (event, context) => {
+  const headers = {
+    'Access-Control-Allow-Origin': 'oma.metropolia.fi',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+  };
+
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers
+    };
+  }
+
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
       body: JSON.stringify({ message: 'Method Not Allowed' }),
+      headers,
     };
   }
 
@@ -36,6 +50,7 @@ exports.handler = async (event, context) => {
       return {
         statusCode: 400,
         body: JSON.stringify({ message: 'Email is required' }),
+        headers,
       };
     }
 
@@ -46,10 +61,10 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ message: 'Email added successfully' }),
     };
   } catch (error) {
-    console.error('Error adding email to Firestore:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Internal Server Error', error: error.message }),
+      headers,
+      body: JSON.stringify({ error: error.message })
     };
   }
 };
