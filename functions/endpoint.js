@@ -59,6 +59,8 @@ exports.handler = async (event, context) => {
             dataToSave[`item${index + 1}`] = item;
         });
 
+        dataToSave['timestamp'] = firebase.firestore.Timestamp.fromDate(new Date());
+
         await db.collection('data').add(dataToSave);
 
         return {
